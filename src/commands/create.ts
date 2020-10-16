@@ -1,6 +1,6 @@
 import { Command } from '@oclif/command';
 import chalk from 'chalk';
-import { prompt } from 'enquirer';
+import { prompt } from 'inquirer';
 import { log } from '../libs/display';
 import { ProjectGenerator, ProjectGeneratorOptions } from '../libs/project-generator';
 
@@ -32,7 +32,7 @@ export default class Create extends Command {
         message: 'Enter you project repository',
       },
       {
-        type: 'select',
+        type: 'list',
         name: 'skipInstall',
         message: 'Skip package installation?',
         choices: ['yes', 'no'],
