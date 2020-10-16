@@ -1,7 +1,7 @@
 {
   "name": "epp",
   "description": "Node/Express CLI tool.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Daniel Coker @danielcoker",
   "bin": {
     "epp": "./bin/run"
