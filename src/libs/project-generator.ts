@@ -1,9 +1,9 @@
 import spawn from 'cross-spawn';
-import { log } from './display';
 import * as path from 'path';
 import { existsSync, mkdirSync } from 'fs';
 import { readJsonSync, writeJsonSync } from 'fs-extra';
 import chalk from 'chalk';
+import { log } from './display';
 
 export interface ProjectGeneratorOptions {
   destinationRoot: string;
@@ -101,7 +101,7 @@ export class ProjectGenerator {
       ['git', ['commit', '-m', 'Initial commit'], { stdio: 'ignore' }],
     ];
 
-    for (let command of commands) {
+    for (const command of commands) {
       const result = spawn.sync(...command);
       if (result.status !== 0) {
         log.error(`Failed to run command ${command[0]} with ${command[1].join(' ')} options.`);

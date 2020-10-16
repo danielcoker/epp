@@ -1,9 +1,8 @@
-import { Command, flags } from '@oclif/command';
+import { Command } from '@oclif/command';
 import chalk from 'chalk';
-import { log } from '../libs/display';
 import { prompt } from 'enquirer';
-
-import { ProjectGenerator, ProjectGeneratorOptions } from '../libs/ProjectGenerator';
+import { log } from '../libs/display';
+import { ProjectGenerator, ProjectGeneratorOptions } from '../libs/project-generator';
 
 export default class Create extends Command {
   static description = 'Creates a new Express project.';

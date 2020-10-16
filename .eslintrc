@@ -1,3 +1,26 @@
 {
-  "extends": ["airbnb-base", "oclif-typescript"]
+  "extends": ["airbnb-base", "oclif-typescript"],
+  "rules": {
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "object-curly-spacing": "off",
+    "semi": "off",
+    "import/prefer-default-export": "off",
+    "no-console": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
 }

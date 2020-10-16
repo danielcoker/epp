@@ -38,7 +38,7 @@ const spinner = (str: string) => {
 /**
  *
  * Logs a branded yellow message to stdout.
- * @param {String} msg
+ * @param {String} msg The message to log.
  */
 const branded = (msg: string) => {
   console.log(chalk.hex(brandColor).bold(msg));
@@ -46,7 +46,7 @@ const branded = (msg: string) => {
 
 /**
  * Clears the line and optionally log a message to stdout.
- * @param {string} msg
+ * @param {String} msg The message.
  */
 const clearLine = (msg?: string) => {
   readline.clearLine(process.stdout, 0);
@@ -56,7 +56,7 @@ const clearLine = (msg?: string) => {
 
 /**
  * Logs a yellow warning message to stdout.
- * @param {string} msg
+ * @param {String} msg The warning message to log.
  */
 const warning = (msg: string) => {
   console.log(withCaret(withWarning(msg)));
@@ -64,7 +64,7 @@ const warning = (msg: string) => {
 
 /**
  * Logs a red error message to stderr.
- * @param {string} msg
+ * @param {String} msg The error message to log.
  */
 const error = (msg: string) => {
   console.error(withX(chalk.red.bold(msg)));
@@ -72,7 +72,7 @@ const error = (msg: string) => {
 
 /**
  * Logs a subtle gray message to stdout.
- * @param {string} msg
+ * @param {String} msg The message to log.
  */
 const meta = (msg: string) => {
   console.log(withCaret(chalk.gray(msg)));
@@ -80,7 +80,7 @@ const meta = (msg: string) => {
 
 /**
  * Logs a progress message to stdout.
- * @param {string} msg
+ * @param {String} msg The message to log.
  */
 const progress = (msg: string) => {
   console.log(withCaret(chalk.bold(msg)));
@@ -88,7 +88,7 @@ const progress = (msg: string) => {
 
 /**
  * Logs a bold info message to stdout.
- * @param msg
+ * @param {String} msg The message to log.
  */
 const info = (msg: string) => {
   console.log(chalk.bold(msg));
@@ -96,7 +96,7 @@ const info = (msg: string) => {
 
 /**
  * Logs a green success message to stdout.
- * @param {string} msg
+ * @param {String} msg The message to log.
  */
 const success = (msg: string) => {
   console.log(withCheck(chalk.green(msg)));
@@ -111,7 +111,8 @@ const newline = () => {
 
 /**
  * Colorizes a variable for display.
- * @param {string} val
+ * @param {string} val The name of the variable.
+ * @returns {String} The formatted string.
  */
 const variable = (val: any) => {
   return chalk.cyan.bold(`${val}`);
