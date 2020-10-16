@@ -32,8 +32,7 @@ USAGE
 
 <!-- commands -->
 
-- [`epp hello [FILE]`](#epp-hello-file)
-- [`epp help [COMMAND]`](#epp-help-command)
+- [`epp create`](#epp-create)
 
 ## `epp create`
 
