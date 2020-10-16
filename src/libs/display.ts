@@ -2,10 +2,10 @@ import chalk from 'chalk';
 import ora from 'ora';
 import readline from 'readline';
 
-const brandColor = 'ffc602';
+const brandColor = 'E4E4F1';
 
 const withBrand = (str: string) => {
-  return chalk.hex(brandColor).bold(str);
+  return chalk.hex(brandColor)(str);
 };
 
 const withWarning = (str: string) => {
