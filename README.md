@@ -21,7 +21,7 @@ $ npm install -g @danielcoker/epp
 $ epp COMMAND
 running command...
 $ epp (-v|--version|version)
-@danielcoker/epp/0.1.0 win32-x64 node-v12.16.0
+@danielcoker/epp/0.1.1 win32-x64 node-v12.16.0
 $ epp --help [COMMAND]
 USAGE
   $ epp COMMAND
@@ -32,22 +32,25 @@ USAGE
 # Commands
 
 <!-- commands -->
-* [`epp create`](#epp-create)
+* [`epp create [NAME]`](#epp-create-name)
 * [`epp help [COMMAND]`](#epp-help-command)
 
-## `epp create`
+## `epp create [NAME]`
 
 Creates a new Express project.
 
 ```
 USAGE
-  $ epp create
+  $ epp create [NAME]
+
+ARGUMENTS
+  NAME  The name of the Express project.
 
 ALIASES
   $ epp c
 ```
 
-_See code: [src\commands\create.ts](https://github.com/danielcoker/epp/blob/v0.1.0/src\commands\create.ts)_
+_See code: [src\commands\create.ts](https://github.com/danielcoker/epp/blob/v0.1.1/src\commands\create.ts)_
 
 ## `epp help [COMMAND]`
 
