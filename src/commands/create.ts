@@ -26,6 +26,7 @@ export default class Create extends Command {
         name: 'name',
         message: 'Enter your project name',
         default: args.name,
+        validate: (v: any) => (v ? true : 'Project name is required'),
       },
       {
         type: 'input',
