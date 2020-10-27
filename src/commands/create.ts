@@ -9,12 +9,23 @@ export default class Create extends Command {
 
   static aliases = ['c'];
 
+  static args = [
+    {
+      name: 'name',
+      required: false,
+      description: 'The name of the Express project.',
+    },
+  ];
+
   async run() {
+    const { args } = this.parse(Create);
+
     const question = [
       {
         type: 'input',
         name: 'name',
         message: 'Enter your project name',
+        default: args.name,
       },
       {
         type: 'input',
