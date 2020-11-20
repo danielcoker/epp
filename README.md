@@ -4,18 +4,20 @@ CLI tool to create Express projects.
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/@danielcoker/epp.svg)](https://npmjs.org/package/@danielcoker/epp)
-[![Downloads/week](https://img.shields.io/npm/dw/@danielcoker/epp.svg)](https://npmjs.org/package/@danielcokerepp)
+[![Downloads/week](https://img.shields.io/npm/dw/@danielcoker/epp.svg)](https://npmjs.org/package/@danielcoker/epp)
 [![License](https://img.shields.io/npm/l/epp.svg)](https://github.com/danielcoker/epp/blob/master/package.json)
 
 <!-- toc -->
-* [epp](#epp)
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [epp](#epp)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @danielcoker/epp
 $ epp COMMAND
@@ -27,13 +29,15 @@ USAGE
   $ epp COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`epp create [NAME]`](#epp-create-name)
-* [`epp help [COMMAND]`](#epp-help-command)
+
+- [`epp create [NAME]`](#epp-create-name)
+- [`epp help [COMMAND]`](#epp-help-command)
 
 ## `epp create [NAME]`
 
@@ -68,4 +72,5 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.2.0/src\commands\help.ts)_
+
 <!-- commandsstop -->
