@@ -61,7 +61,11 @@ export default class Create extends Command {
       this.log('\n' + log.withBrand('Your new Express app is ready! Next steps:') + '\n');
       this.log('- Go inside your project folder');
       this.log(log.withCaret(chalk.bold.blue(`cd ${answers.name}`)));
-      this.log(`- Open ${chalk.bold.blue('README.md')} file and follow the getting started guide.`);
+      this.log(
+        `- Open ${chalk.bold.blue('README.md')} file and follow the ${chalk.bold.blue(
+          'Getting Started',
+        )} guide.`,
+      );
     } catch (error) {
       this.error(error);
     }
