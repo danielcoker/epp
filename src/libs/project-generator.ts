@@ -1,7 +1,7 @@
 import spawn from 'cross-spawn';
 import * as path from 'path';
 import { existsSync, mkdirSync } from 'fs';
-import { readJsonSync, writeJsonSync, readFile, outputFile } from 'fs-extra';
+import { readJson, writeJson, readFile, outputFile } from 'fs-extra';
 import chalk from 'chalk';
 import { log } from './display';
 
@@ -45,7 +45,7 @@ export class ProjectGenerator {
     const updatingPackageSpinner = log.spinner(log.withBrand('Updating package.json')).start();
 
     try {
-      const pkg = readJsonSync(packageFile);
+      const pkg = await readJson(packageFile);
 
       pkg.name = this.options.name;
       pkg.repository.type = undefined;
@@ -56,7 +56,7 @@ export class ProjectGenerator {
       pkg.bugs = undefined;
       pkg.homepage = undefined;
 
-      await writeJsonSync(packageFile, pkg, { spaces: 2 });
+      await writeJson(packageFile, pkg, { spaces: 2 });
 
       updatingPackageSpinner.succeed();
 
