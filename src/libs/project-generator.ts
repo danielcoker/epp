@@ -1,7 +1,7 @@
 import spawn from 'cross-spawn';
 import * as path from 'path';
 import { existsSync, mkdirSync } from 'fs';
-import { readJsonSync, writeJsonSync } from 'fs-extra';
+import { readJsonSync, writeJsonSync, readFile, outputFile } from 'fs-extra';
 import chalk from 'chalk';
 import { log } from './display';
 
@@ -42,6 +42,8 @@ export class ProjectGenerator {
   async updatePackageInfo() {
     const packageFile = path.join('package.json');
 
+    const updatingPackageSpinner = log.spinner(log.withBrand('Updating package.json')).start();
+
     try {
       const pkg = readJsonSync(packageFile);
 
@@ -56,19 +58,35 @@ export class ProjectGenerator {
 
       await writeJsonSync(packageFile, pkg, { spaces: 2 });
 
+      updatingPackageSpinner.succeed();
+
       return true;
     } catch (error) {
-      console.error(error);
-      log.error('Unable to read package.json');
+      updatingPackageSpinner.fail('Unable to read package.json');
 
       return false;
     }
+  }
+
+  async updateReadme() {
+    const cwd = process.cwd();
+    const readmePath = path.resolve(cwd, 'README.md');
+
+    let readme = await readFile(readmePath, 'utf8');
+    readme = this.replaceTag(readme, 'intro', this.introText());
+
+    readme = readme.trimRight();
+    readme += '\n';
+
+    await outputFile(readmePath, readme);
   }
 
   async postWrite() {
     const gitInitResult = spawn.sync('git', ['init'], { stdio: 'ignore' });
 
     await this.updatePackageInfo();
+
+    await this.updateReadme();
 
     if (!this.options.skipInstall) {
       const installingSpinner = log.spinner(log.withBrand('Installing dependencies')).start();
@@ -108,6 +126,27 @@ export class ProjectGenerator {
         break;
       }
     }
+  }
+
+  replaceTag(readme: string, tag: string, body: string): string {
+    const updateReadmeSpinner = log.spinner(log.withBrand('Updating README.md')).start();
+
+    if (readme.includes(`<!-- ${tag} -->`)) {
+      if (readme.includes(`<!-- ${tag}stop -->`)) {
+        readme = readme.replace(
+          new RegExp(`<!-- ${tag} -->(.|\n)*<!-- ${tag}stop -->`, 'm'),
+          `<!-- ${tag} -->`,
+        );
+      }
+    }
+
+    updateReadmeSpinner.succeed();
+
+    return readme.replace(`<!-- ${tag} -->`, `<!-- ${tag} -->\n${body}\n<!-- ${tag}stop -->`);
+  }
+
+  introText() {
+    return `# ${this.options.name}\n\n${this.options.description}\n`.trim();
   }
 
   async run() {
