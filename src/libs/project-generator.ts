@@ -2,8 +2,10 @@ import spawn from 'cross-spawn';
 import * as path from 'path';
 import { existsSync, mkdirSync } from 'fs';
 import { readJson, writeJson, readFile, outputFile } from 'fs-extra';
+import { parse, stringify } from 'envfile';
 import chalk from 'chalk';
 import { log } from './display';
+import { randomString } from './strings';
 
 export interface ProjectGeneratorOptions {
   destinationRoot: string;
@@ -81,12 +83,40 @@ export class ProjectGenerator {
     await outputFile(readmePath, readme);
   }
 
+  async updateEnvInfo() {
+    const updateEnvSpinner = log.spinner(log.withBrand('Updating env variables')).start();
+
+    const cwd = process.cwd();
+    const envPath = path.resolve(cwd, '.env');
+
+    const envFile: string = await readFile(envPath, 'utf8');
+    const env: any = parse(envFile);
+
+    env.APP_NAME = this.options.name;
+    env.NODE_ENV = 'development';
+
+    env.LOG_LEVEL += '\n';
+    env.DB_TEST_URL += '\n';
+
+    env.JSON_WEB_TOKEN_SECRET = randomString(40);
+    env.JSON_WEB_TOKEN_EXPIRE = '30d';
+
+    await outputFile(envPath, stringify(env));
+
+    updateEnvSpinner.succeed();
+  }
+
   async postWrite() {
     const gitInitResult = spawn.sync('git', ['init'], { stdio: 'ignore' });
 
     await this.updatePackageInfo();
 
     await this.updateReadme();
+
+    // Copy .env.example to .env
+    spawn.sync('cp', ['.env.example', '.env'], { stdio: 'ignore' });
+
+    await this.updateEnvInfo();
 
     if (!this.options.skipInstall) {
       const installingSpinner = log.spinner(log.withBrand('Installing dependencies')).start();
