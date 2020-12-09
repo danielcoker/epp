@@ -52,7 +52,9 @@
   ],
   "homepage": "https://github.com/danielcoker/epp",
   "keywords": [
-    "oclif"
+    "node",
+    "express",
+    "cli"
   ],
   "license": "MIT",
   "main": "lib/index.js",
