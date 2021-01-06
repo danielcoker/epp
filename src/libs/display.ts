@@ -1,11 +1,10 @@
 import chalk from 'chalk';
-import ora from 'ora';
 import readline from 'readline';
 
 const brandColor = 'E4E4F1';
 
 const withBrand = (str: string) => {
-  return chalk.hex(brandColor)(str);
+  return chalk.bold.hex(brandColor)(str);
 };
 
 const withWarning = (str: string) => {
@@ -22,17 +21,6 @@ const withCheck = (str: string) => {
 
 const withX = (str: string) => {
   return `${chalk.red.bold('✕')} ${str}`;
-};
-
-const spinner = (str: string) => {
-  return ora({
-    text: str,
-    color: 'blue',
-    spinner: {
-      interval: 120,
-      frames: ['-', '+', '-'],
-    },
-  });
 };
 
 /**
@@ -124,7 +112,6 @@ export const log = {
   withCaret,
   withCheck,
   withX,
-  spinner,
   branded,
   clearLine,
   warning,
